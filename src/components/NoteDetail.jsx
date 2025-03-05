@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMemo, updateMemo } from "../store/memoSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import { fetchOpenAI } from "../api";
 
 const NoteDetail = () => {
   const params = useParams();
@@ -21,6 +22,11 @@ const NoteDetail = () => {
   const handleDelete = () => {
     dispatch(deleteMemo({ id: params.id }));
     navigate("/");
+  };
+
+  const handleSubmit = async () => {
+    const data = await fetchOpenAI(memo.content);
+    dispatch(updateMemo({ ...memo, summary: data.choices[0].message.content }));
   };
 
   return (
@@ -50,16 +56,18 @@ const NoteDetail = () => {
             className="w-full h-64 resize-none bg-slate-600 rounded p-3 mt-3"
             value={memo.content}
           ></textarea>
-          <button className="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded-full text-sm mt-4">
+          <button
+            onClick={handleSubmit}
+            className="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded-full text-sm mt-4"
+          >
             Summarize
           </button>
         </div>
         <div className="flex-1 bg-slate-700 p-5 rounded-lg">
           <h2>Summary</h2>
-          <div
-            value={memo.summary}
-            className="w-full h-64 resize-none bg-slate-600 rounded p-3 mt-3"
-          ></div>
+          <div className="w-full h-64 resize-none bg-slate-600 rounded p-3 mt-3">
+            {memo.summary}
+          </div>
         </div>
       </section>
     </div>
