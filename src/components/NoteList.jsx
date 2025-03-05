@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 const NoteList = () => {
+  const memo = useSelector((state) => state.memo);
+
   return (
     <div className="max-w-[1030px] bg-slate-800 mx-auto p-5">
       <div className="flex justify-end text-gray-400 mb-4 space-x-4">
@@ -10,20 +15,24 @@ const NoteList = () => {
         </button>
       </div>
       <ul>
-        <li>
-          <a
-            href="/"
-            className="flex justify-between items-center bg-slate-600 p-3 my-2 rounded-lg hover:bg-slate-500"
-          >
-            <div>
-              <h3 className="text-lg font-semibold">Title</h3>
-              <p className="text-sm text-gray-400">Description</p>
-            </div>
-            <div>
-              <time className="text-sm text-gray-400">2024</time>
-            </div>
-          </a>
-        </li>
+        {memo.map((item) => {
+          return (
+            <li>
+              <Link
+                to={`/notes/${item.id}`}
+                className="flex justify-between items-center bg-slate-600 p-3 my-2 rounded-lg hover:bg-slate-500"
+              >
+                <div>
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <p className="text-sm text-gray-400">{item.content}</p>
+                </div>
+                <div>
+                  <time className="text-sm text-gray-400">{item.time}</time>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

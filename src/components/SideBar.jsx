@@ -1,16 +1,70 @@
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { addMemo } from "../store/memoSlice";
+
 const SideBar = () => {
+  const memo = useSelector((state) => state.memo);
+  const dispatch = useDispatch();
+  console.log(memo);
+
+  const navigate = useNavigate();
+
+  const handleClickAdd = () => {
+    const id = uuidv4();
+    dispatch(
+      addMemo({
+        id,
+        title: "New Memo",
+        content: "",
+        summary: "",
+        time: new Date().toLocaleString(),
+      })
+    );
+
+    navigate(`/notes/${id}`);
+  };
+
   return (
     <div className="flex flex-col bg-slate-800 w-[200px] text-center">
       <h1 className="font-bold text-3xl py-5">Memo AI</h1>
-      <button className="font-bold bg-white hover:bg-slate-700 text-slate-800 hover:text-white mx-auto my-4 w-50 px-5 py-1 rounded-lg block">
+      <button
+        onClick={handleClickAdd}
+        className="font-bold bg-white hover:bg-slate-700 text-slate-800 hover:text-white mx-auto my-4 w-50 px-5 py-1 rounded-lg block"
+      >
         Add Memo
       </button>
-      <ul>
-        <li className="border-2 hover:border-dotted rounded-lg mx-2 my-3">
+      <div>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-500 font-semibold"
+              : "text-gray-300 hover:text-white"
+          }
+        >
           Home
-        </li>
-        <li className="border-2 hover:border-dotted rounded-lg mx-2">Memo1</li>
-      </ul>
+        </NavLink>
+      </div>
+      <div>
+        <ul className="flex flex-col space-y-1">
+          {memo.map((item) => {
+            return (
+              <NavLink
+                key={item.id}
+                to={`/notes/${item.id}`}
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-500 font-semibold"
+                    : "text-gray-300 hover:text-white"
+                }
+              >
+                {item.title}
+              </NavLink>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
