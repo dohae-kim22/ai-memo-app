@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { addMemo } from "../store/memoSlice";
+import { format } from "date-fns";
 
 const SideBar = () => {
   const memo = useSelector((state) => state.memo);
@@ -18,7 +19,7 @@ const SideBar = () => {
         title: "New Memo",
         content: "",
         summary: "",
-        time: new Date().toLocaleString(),
+        time: format(Date.now(), "yyyy-MM-dd hh:mm a"),
       })
     );
 
