@@ -1,48 +1,38 @@
-# MemoApp with OpenAI Summarization
+# 📝 MemoApp with OpenAI Summarization
 
-## Overview
+A smart memo application that lets users create, update, delete, and summarize memos using **OpenAI’s GPT-3.5 API**.  
+You can also sort memos by **date** or **name** — all built with **React**, **Redux**, and **Tailwind CSS**.
 
-This is a simple web application where users can add, update, delete, and view their memos. The application also integrates OpenAI's API to provide a summarization feature. Users can input text in their memo, and the app will generate a concise summary for it.
+👉 [LIVE DEMO](https://ai-memo-app-vert.vercel.app/)
 
-The app also includes functionality to sort memos either by **date** or **name**.
-
-The app is built using **React**, **Redux**, **react-router-dom**, **Tailwind CSS**, **Vite**, and utilizes **OpenAI API** for text summarization.
 
 ---
 
-## Demo
+## 🖊️ Features
 
-You can view the demo of the application here:  
-[Demo URL (Vercel)](https://ai-memo-app-vert.vercel.app/)
-
----
-
-## Features
-
-- **Add Memos**: Users can create new memos with a title and content.
-- **Summarize Memos**: Users can get a summarized version of the content using OpenAI's API.
-- **Update Memos**: Users can edit their existing memos.
-- **Delete Memos**: Users can delete their memos.
-- **Sort Memos**: Users can sort the memos by **date** or **name**.
+- **Add Memos**: Create new memos with a title and detailed content.
+- **Summarize Memos**: Generate a short summary using OpenAI.
+- **Update Memos**: Edit your existing memos easily.
+- **Delete Memos**: Remove memos you no longer need.
+- **Sort Memos**: Sort the memos by **date** or **name**.
 
 ---
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- **Frontend**:
+### Frontend
+- **React** – Component-based UI
+- **Redux** – Global state management
+- **React Router DOM** – Routing and navigation
+- **Tailwind CSS** – Utility-first styling
+- **Vite** – Lightning-fast development tooling
 
-  - **React**: JavaScript library for building user interfaces.
-  - **Redux**: State management for React apps.
-  - **React Router DOM**: For navigation between pages.
-  - **Tailwind CSS**: Utility-first CSS framework for custom styling.
-  - **Vite**: A fast build tool and development server for React apps.
-
-- **API**:
-  - **OpenAI API**: For generating summaries of memo content.
+### AI Integration
+- **OpenAI GPT-3.5 API** – For summarizing memo content
 
 ---
 
-## Installation
+## 🧪 Getting Started Locally
 
 To run the project locally, follow these steps:
 
